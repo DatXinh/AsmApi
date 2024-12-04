@@ -106,7 +106,38 @@ router.post('/cars', async function(req, res) {
     res.status(500).send('Lỗi khi thêm xe');
   }
 });
+// update car
+router.put('/edit2/:id', async function(req, res, next) {
+  try {
+    const { tenXe, hangSanXuat, namSanXuat, giaBan, moTa } = req.body;
 
+    const updatedCar = await Car.findByIdAndUpdate(req.params.id, {
+      tenXe, hangSanXuat, namSanXuat, giaBan, moTa
+    }, { new: true });
+
+    if (!updatedCar) {
+      return res.status(404).json({ message: 'Không tìm thấy xe để sửa' });
+    }
+
+    res.json({ message: 'Cập nhật thành công', car: updatedCar });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Lỗi khi lưu thông tin xe' });
+  }
+});
+//delete car
+router.delete('/delete2/:id', async function(req, res) {
+  try {
+    const deletedCar = await Car.findByIdAndDelete(req.params.id);
+    if (!deletedCar) {
+      return res.status(404).json({ message: 'Không tìm thấy xe để xóa' });
+    }
+    res.json({ message: 'Xóa thành công', car: deletedCar });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Lỗi khi xóa xe' });
+  }
+});
 
 
 module.exports = router;
