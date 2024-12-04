@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const mongoose = require('mongoose');
-const Car = require('../models/Car'); // Import model từ models/Car.js
+const Car = require('../Models/Car'); // Import model từ models/Car.js
 
 // Kết nối MongoDB
 const mongodb = 'mongodb+srv://datntph31967:datntph31967@cluster0.rbhxb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
