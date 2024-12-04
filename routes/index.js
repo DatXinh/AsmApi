@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const mongoose = require('mongoose');
-const Car = require('../Models/Car'); // Import model từ models/Car.js
+const Car = require('../model/Car'); // Import model từ models/Car.js
 
 // Kết nối MongoDB
 const mongodb = 'mongodb+srv://datntph31967:datntph31967@cluster0.rbhxb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
@@ -88,7 +88,7 @@ router.get('/delete/:id', async function (req, res, next) {
 // Để lấy danh sách xe từ MongoDB
 router.get('/cars', async function(req, res) {
   try {
-    const cars = await Car.find(); // Lấy danh sách xe
+    const cars = await Car.find(undefined, undefined, undefined); // Lấy danh sách xe
     res.json(cars); // Trả về danh sách xe dưới dạng JSON
   } catch (err) {
     res.status(500).send('Lỗi khi lấy danh sách xe');
