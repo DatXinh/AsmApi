@@ -138,6 +138,4 @@ router.delete('/delete2/:id', async function(req, res) {
     res.status(500).json({ message: 'Lỗi khi xóa xe' });
   }
 });
-
-
 module.exports = router;
